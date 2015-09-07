@@ -12,6 +12,7 @@ ProcessInteractor::~ProcessInteractor(void)
 }
 void ProcessInteractor::InjectDLL()
 {
+	Sleep(5000);
 	LPVOID remoteParamString=NULL;
 	LPVOID LoadLibraryARemoteAddr=NULL;
 	LoadLibraryARemoteAddr= GetProcAddress(GetModuleHandle(L"kernel32.dll"),"LoadLibraryA");
@@ -33,7 +34,7 @@ void ProcessInteractor::InjectDLL()
 	{
 		throw ProcessInteractorException(&(string)"CreateRemoteThread function failed",GetLastError());
 	}
-	Sleep(5000);
+	
 }
 void ProcessInteractor::InitCommunicator()
 {

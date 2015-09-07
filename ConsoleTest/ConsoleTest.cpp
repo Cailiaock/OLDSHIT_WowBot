@@ -13,11 +13,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	int inter=0;
 	int comm=0;
 	int count=0;
-	 disp=ProcessDispatcher();
+	disp=ProcessDispatcher();
+	while(true)
+	{
+		p=disp.StartNewProcess();
+		p->KillProcess();
+	}
 
-	 p=disp.StartNewProcess();
-
-		
 
 	return 0;
 }
