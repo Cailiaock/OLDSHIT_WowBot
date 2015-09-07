@@ -12,7 +12,6 @@ ProcessInteractor::~ProcessInteractor(void)
 }
 void ProcessInteractor::InjectDLL()
 {
-	Sleep(5000);
 	LPVOID remoteParamString=NULL;
 	LPVOID LoadLibraryARemoteAddr=NULL;
 	LoadLibraryARemoteAddr= GetProcAddress(GetModuleHandle(L"kernel32.dll"),"LoadLibraryA");
@@ -34,6 +33,7 @@ void ProcessInteractor::InjectDLL()
 	{
 		throw ProcessInteractorException(&(string)"CreateRemoteThread function failed",GetLastError());
 	}
+	cout<<"Interactor: DLL injected, waiting for server communicator."<<endl;
 	
 }
 void ProcessInteractor::InitCommunicator()
@@ -44,6 +44,7 @@ void ProcessInteractor::KillProcess()
 {
 	if (process_handle!=INVALID_HANDLE_VALUE || process_handle==NULL)
 		TerminateProcess(process_handle,0);
+
 }
 void ProcessInteractor::TestChat()
 {

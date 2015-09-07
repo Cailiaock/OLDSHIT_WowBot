@@ -5,6 +5,7 @@ class Communicator
 	protected:
 		HANDLE request;
 		HANDLE response;
+		HANDLE sc_started;
 		WCHAR * name;
 		HANDLE pipe;
 		void GetPipeNameStr(WCHAR** buff,DWORD pid);

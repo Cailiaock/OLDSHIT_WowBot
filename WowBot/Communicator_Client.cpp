@@ -6,16 +6,13 @@ Communicator_Client::Communicator_Client(DWORD pid):Communicator()
 	pipe=NULL;
 	GetPipeNameStr(&name,pid);
 	unsigned attempts=0;
-	do
-	{
-		Sleep(7000);
-		pipe= CreateFile(name,GENERIC_READ | GENERIC_WRITE,FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-		attempts++;
-	}while (pipe==INVALID_HANDLE_VALUE && attempts<4);
+	WaitForSingleObject(sc_started,10000);
+	pipe= CreateFile(name,GENERIC_READ | GENERIC_WRITE,FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 	if (pipe==NULL || pipe==INVALID_HANDLE_VALUE)
 	{
 		throw  CommunicatorException(&(string)"Cant create pipe", GetLastError());
 	}
+	cout<<"Communicator: Pipe created."<<endl;
 }
 
 

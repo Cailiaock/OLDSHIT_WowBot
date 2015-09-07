@@ -5,6 +5,7 @@ Communicator::Communicator(void)
 {
 	request=CreateEvent(NULL,TRUE,FALSE,L"write");
 	response=CreateEvent(NULL,TRUE,FALSE,L"read");
+	sc_started=CreateEvent(NULL,TRUE,FALSE,L"server_started");
 }
 
 

@@ -14,11 +14,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	int comm=0;
 	int count=0;
 	disp=ProcessDispatcher();
-	while(true)
-	{
-		p=disp.StartNewProcess();
-		p->KillProcess();
-	}
+	p=disp.CreateWowProcess();
+	p->TestChat();
 
 
 	return 0;

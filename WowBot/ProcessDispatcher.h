@@ -18,7 +18,7 @@ public:
 	~ProcessDispatcher(void);
 	void ScanProcesses();
 	ProcessInteractor * CreateWowProcess();
-	ProcessInteractor * StartNewProcess();
+	//ProcessInteractor * StartNewProcess();
 
 
 };

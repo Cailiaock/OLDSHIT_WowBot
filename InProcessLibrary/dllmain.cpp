@@ -27,6 +27,22 @@ typedef HRESULT (__stdcall *PresentPtr) (IDXGISwapChain* swap_chain,UINT SyncInt
 
 PresentPtr  old_present;
 Communicator * c;
+DWORD WINAPI CommunicatorProc(const LPVOID param)
+{
+	c=new Communicator_Server();
+	char * buff=new char [1024];
+	while (true)
+	{
+		
+		c->Read(buff);
+		c->Write("GOT IT",7);
+	}
+
+	return 1;
+}
+
+
+
 
 HRESULT __stdcall   Present(IDXGISwapChain * swap_chain,  UINT SyncInterval, UINT Flags)
 {	
@@ -44,8 +60,9 @@ HRESULT __stdcall   Present(IDXGISwapChain * swap_chain,  UINT SyncInterval, UIN
 		VirtualProtect((void*)old_present_address,0x2F,old_protect,&old_protect);
 		old_present=reinterpret_cast<PresentPtr>(old_present_address);
 		first_time=false;
-		c=new Communicator_Server();
-		Sleep(1000);
+		CreateThread(NULL,0,CommunicatorProc,NULL,0,NULL);
+		//c=new Communicator_Server();
+		//Sleep(1000);
 		//DebugBreak();
 	}
 	//DebugBreak();
@@ -53,13 +70,6 @@ HRESULT __stdcall   Present(IDXGISwapChain * swap_chain,  UINT SyncInterval, UIN
 	//unsigned  * p = (unsigned*)ObjectMgr::GetActivePlayerGuid;
 
 	//ObjectMgr::EnumVisibleObjects(enum_vo,NULL);
-	char b[1024];
-	c->Read(b);
-	if (strcmp(b,"GREETING")==0)
-		c->Write("RESPONSEGREETING",17);
-	else 
-		c->Write("HELLO",6);
-	
 	return old_present(swap_chain,SyncInterval,Flags);
 }
 /*
