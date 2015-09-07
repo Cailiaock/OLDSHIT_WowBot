@@ -1,36 +1,37 @@
 #include "stdafx.h"
-
+#include "Communicator.h"
 
 Communicator::Communicator(void)
 {
-
+	request=CreateEvent(NULL,TRUE,FALSE,L"write");
+	response=CreateEvent(NULL,TRUE,FALSE,L"read");
 }
 
 
 Communicator::~Communicator(void)
 {
+	CloseHandle(request);
+	CloseHandle(response);
 }
-bool Communicator::Read(char * buff)
+DWORD Communicator::Read(char * buff)
 {
+	WaitForSingleObject(request,INFINITE);
 	DWORD bytesRead=0;
 	if (ReadFile(pipe,buff,MAX_BUFFER_SIZE,&bytesRead,NULL))
 	{
-		if (*(DWORD*)buff==bytesRead)
-		{
-			return true;
-		}
+		SetEvent(response);
+		return bytesRead;
 	}
-	return false;
+	return 0;
 }
 bool Communicator::Write(char * buff, DWORD lenght)
 {
 	DWORD bytesWritten;
+	SetEvent(request);
 	if (WriteFile(pipe,buff,lenght,&bytesWritten,NULL))
 	{
-		if (*(DWORD*)buff==bytesWritten)
-		{
-			return true;
-		}
+		WaitForSingleObject(response,INFINITE);
+		return true;
 	}
 	return false;
 }

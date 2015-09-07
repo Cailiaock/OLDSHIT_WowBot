@@ -1,9 +1,10 @@
 // dllmain.cpp: определяет точку входа для приложения DLL.
 #include "stdafx.h"
 #include <d3d11.h>
-#include <iostream>
+
 #include <string>
 #include "Communicator_Server.h"
+
 using namespace std;
 
 //BOOL enum_vo(CGObject_C * pObject, void *data);
@@ -25,7 +26,7 @@ IDXGISwapChain* chain;
 typedef HRESULT (__stdcall *PresentPtr) (IDXGISwapChain* swap_chain,UINT SyncInterval,UINT Flags );
 
 PresentPtr  old_present;
-
+Communicator * c;
 
 HRESULT __stdcall   Present(IDXGISwapChain * swap_chain,  UINT SyncInterval, UINT Flags)
 {	
@@ -43,15 +44,22 @@ HRESULT __stdcall   Present(IDXGISwapChain * swap_chain,  UINT SyncInterval, UIN
 		VirtualProtect((void*)old_present_address,0x2F,old_protect,&old_protect);
 		old_present=reinterpret_cast<PresentPtr>(old_present_address);
 		first_time=false;
-		DebugBreak();
-		Communicator * c=new Communicator_Server();
+		c=new Communicator_Server();
+		Sleep(1000);
+		//DebugBreak();
 	}
 	//DebugBreak();
 
 	//unsigned  * p = (unsigned*)ObjectMgr::GetActivePlayerGuid;
 
 	//ObjectMgr::EnumVisibleObjects(enum_vo,NULL);
-
+	char b[1024];
+	c->Read(b);
+	if (strcmp(b,"GREETING")==0)
+		c->Write("RESPONSEGREETING",17);
+	else 
+		c->Write("HELLO",6);
+	
 	return old_present(swap_chain,SyncInterval,Flags);
 }
 /*

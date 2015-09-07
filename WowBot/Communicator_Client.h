@@ -1,9 +1,17 @@
-#include <Communicator.h>
 #pragma once
-class Communicator_Client: protected Communicator
+#include "stdafx.h"
+class CommunicatorException: public Exception
+{ 
+	
+public:
+	CommunicatorException(string * text, DWORD error):Exception(text, error){};
+};
+
+class Communicator_Client: public  Communicator
 {
 public:
 	Communicator_Client(DWORD pid);
 	~Communicator_Client(void);
+	void ConnectionCheck();
 };
 
