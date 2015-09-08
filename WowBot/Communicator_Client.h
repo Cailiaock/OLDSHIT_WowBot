@@ -1,5 +1,5 @@
 #pragma once
-#include "stdafx.h"
+#include "Exception.h"
 class CommunicatorException: public Exception
 { 
 	

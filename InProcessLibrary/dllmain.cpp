@@ -4,7 +4,7 @@
 
 #include <string>
 #include "Communicator_Server.h"
-
+#include "CommandExecuter.h"
 using namespace std;
 
 //BOOL enum_vo(CGObject_C * pObject, void *data);
@@ -29,15 +29,17 @@ PresentPtr  old_present;
 Communicator * c;
 DWORD WINAPI CommunicatorProc(const LPVOID param)
 {
+	
 	c=new Communicator_Server();
 	char * buff=new char [1024];
 	while (true)
 	{
 		
 		c->Read(buff);
-		c->Write("GOT IT",7);
+		CommandExecuter::PushToExecute(buff);
+		c->Write(buff,1024);
 	}
-
+	delete buff;
 	return 1;
 }
 
@@ -61,15 +63,8 @@ HRESULT __stdcall   Present(IDXGISwapChain * swap_chain,  UINT SyncInterval, UIN
 		old_present=reinterpret_cast<PresentPtr>(old_present_address);
 		first_time=false;
 		CreateThread(NULL,0,CommunicatorProc,NULL,0,NULL);
-		//c=new Communicator_Server();
-		//Sleep(1000);
-		//DebugBreak();
 	}
-	//DebugBreak();
-
-	//unsigned  * p = (unsigned*)ObjectMgr::GetActivePlayerGuid;
-
-	//ObjectMgr::EnumVisibleObjects(enum_vo,NULL);
+	CommandExecuter::Execute();
 	return old_present(swap_chain,SyncInterval,Flags);
 }
 /*
@@ -104,6 +99,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 			 VirtualProtect(present_address,0x7,PAGE_READWRITE,&old_protect);
 			 memcpy(present_address,patch,0x7);
 			 VirtualProtect(present_address,0x7,old_protect,&old_protect);
+			 delete patch;
 			 break;
 		}
 	case DLL_THREAD_ATTACH:

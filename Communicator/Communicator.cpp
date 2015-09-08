@@ -13,6 +13,8 @@ Communicator::~Communicator(void)
 {
 	CloseHandle(request);
 	CloseHandle(response);
+	CloseHandle(sc_started);
+	CloseHandle(pipe);
 }
 DWORD Communicator::Read(char * buff)
 {

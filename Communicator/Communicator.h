@@ -1,5 +1,10 @@
 #pragma once
 #define MAX_BUFFER_SIZE 1024
+//Interaction commands
+#define VISIBLE_OBJECTS_LIST 10
+
+
+
 class Communicator
 {
 	protected:

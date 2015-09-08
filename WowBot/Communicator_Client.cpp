@@ -18,6 +18,7 @@ Communicator_Client::Communicator_Client(DWORD pid):Communicator()
 
 Communicator_Client::~Communicator_Client(void)
 {
+
 }
 
 void Communicator_Client::ConnectionCheck()

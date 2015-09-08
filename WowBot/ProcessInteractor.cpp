@@ -48,13 +48,23 @@ void ProcessInteractor::KillProcess()
 }
 void ProcessInteractor::TestChat()
 {
+	int i;
+	cin>>i;
 	char * buff=new char[1024];
 	while(true)
 	{
-		cin>>buff;
-		communicator->Write(buff,strlen(buff));
+
+		//cin>>buff;
+		*(unsigned*)buff=VISIBLE_OBJECTS_LIST;
+		//command=htonl(command);
+		//memcpy(buff,&command,4);
+		communicator->Write(buff,1024);
 		communicator->Read(buff);
-		cout<<buff<<endl;
+		for (int i=0;i<*(unsigned*)buff;i++)
+		{
+			cout<<hex<<*(unsigned*)(buff+i+1)<<": "<<dec<<i<<endl;
+		}
+		//cout<<buff<<endl;
 	}
 	delete buff;
 }

@@ -21,6 +21,9 @@
     <Filter Include="Communication">
       <UniqueIdentifier>{a5f3c141-5c7c-48a9-9f10-fc047f0e55b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Execution">
+      <UniqueIdentifier>{f770ba45-562c-435a-9ed8-78ae83457136}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -44,6 +47,9 @@
     <ClInclude Include="Communicator_Server.h">
       <Filter>Communication</Filter>
     </ClInclude>
+    <ClInclude Include="CommandExecuter.h">
+      <Filter>Execution</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -60,6 +66,9 @@
     </ClCompile>
     <ClCompile Include="Communicator_Server.cpp">
       <Filter>Communication</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandExecuter.cpp">
+      <Filter>Execution</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
