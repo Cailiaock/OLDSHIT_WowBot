@@ -12,10 +12,7 @@
 #include <windows.h>
 #include <stdarg.h>
 #include <string>
-
-
 #include <Communicator.h>
-
 
 typedef char int8;
 typedef short int16;
@@ -42,6 +39,7 @@ typedef unsigned __int64 uint64;
 //#include "CGPlayer_C.h"
 #include "ObjectMgr.h"
 //#include "OpcodeHandlers.h"
+#include "Client.h"
 
 void InstallGameConsoleCommands();
 void UninstallGameConsoleCommands();

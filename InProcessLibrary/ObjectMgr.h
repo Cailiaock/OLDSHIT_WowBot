@@ -1,7 +1,7 @@
 #pragma once
 struct Filter
 {
-	unsigned  field;
+	unsigned  param;
 	unsigned  counter;
 	unsigned * list;
 };

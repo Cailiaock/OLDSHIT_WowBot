@@ -12,6 +12,7 @@ class ProcessInteractor
 	HANDLE process_handle;
 	DWORD pid;
 	Communicator * communicator;
+	WCHAR * ReadStringUTF8(void * address,DWORD length);
 public:
 	ProcessInteractor(){}
 	ProcessInteractor(HANDLE handle,DWORD pid);

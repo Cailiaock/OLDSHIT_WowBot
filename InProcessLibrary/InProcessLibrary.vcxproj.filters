@@ -50,6 +50,9 @@
     <ClInclude Include="CommandExecuter.h">
       <Filter>Execution</Filter>
     </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>Original</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -69,6 +72,9 @@
     </ClCompile>
     <ClCompile Include="CommandExecuter.cpp">
       <Filter>Execution</Filter>
+    </ClCompile>
+    <ClCompile Include="Client.cpp">
+      <Filter>Original</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

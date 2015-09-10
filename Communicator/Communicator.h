@@ -2,6 +2,11 @@
 #define MAX_BUFFER_SIZE 1024
 //Interaction commands
 #define VISIBLE_OBJECTS_LIST 10
+#define VISIBLE_OBJECTS_NAME_LIST 11
+
+
+#define LOGIN 20
+#define ENTER_WORLD 21
 
 
 

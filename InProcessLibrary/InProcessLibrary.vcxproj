@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGObject_C.h" />
+    <ClInclude Include="Client.h" />
     <ClInclude Include="CommandExecuter.h" />
     <ClInclude Include="Communicator_Server.h" />
     <ClInclude Include="ObjectMgr.h" />
@@ -87,6 +88,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Client.cpp" />
     <ClCompile Include="CommandExecuter.cpp" />
     <ClCompile Include="Communicator_Server.cpp" />
     <ClCompile Include="dllmain.cpp">
