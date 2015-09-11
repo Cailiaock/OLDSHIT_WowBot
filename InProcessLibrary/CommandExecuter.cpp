@@ -68,7 +68,14 @@ void CommandExecuter::Execute()
 			}
 		case LOGIN:
 			{
-				Client::Login(0,"lissek7@ya.ru","lebmat2762066");
+				//Client::Login(0,"lissek7@ya.ru","lebmat2762066");
+				//Client::Login(0,"arttambel@gmail.com","archi911");
+				//unsigned m1=(unsigned)(GetModuleHandle(NULL)+0x12F4);
+				//unsigned * m2=(unsigned*)(GetModuleHandle(NULL)+0x12F4);
+				unsigned * baseframe=(unsigned*)*(unsigned*)((unsigned)(GetModuleHandle(NULL)+0x12F4));
+				unsigned *current = (unsigned*)((unsigned)baseframe+0xD1A25C);
+				WCHAR *  name = (WCHAR*)(unsigned)current+0x1C;
+				
 				break;
 			}
 		case ENTER_WORLD:

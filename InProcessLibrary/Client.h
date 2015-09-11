@@ -6,6 +6,9 @@ typedef char (__cdecl* CGlueMgr__LoginServerLogin)(int p,char * login, char * pa
 typedef void (__cdecl*pSignalEvent)(int eventId, const char *fmt, ...);
 
 
+
+
+//typedef LoadWardenModule;
 //typedef int (__cdecl * Framescript_ExecuteBuffer)();
 
 class Client
